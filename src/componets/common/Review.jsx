@@ -6,12 +6,14 @@ const Review = () => {
   return (
     <>
       <div
-        className="tab-pane  fade show active"
+        className="tab-pane  fade show active mt-5 "
         id="tab-reviews"
         role="tabpanel"
         aria-labelledby="tab-reviews-tab"
       >
-        <h2 className="product-single__reviews-title">Reviews</h2>
+        <h2 class="product-single__details-list__title">Reviews (3)</h2>
+        {/* product-single__details-list__content */}
+        <div className="mx-3">
         <div className="product-single__reviews-list">
           <div className="product-single__reviews-item">
             <div className="customer-avatar">
@@ -202,6 +204,7 @@ const Review = () => {
               </button>
             </div>
           </form>
+        </div>
         </div>
       </div>
     </>

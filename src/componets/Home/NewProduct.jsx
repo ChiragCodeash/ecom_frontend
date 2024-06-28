@@ -10,6 +10,7 @@ import 'swiper/css/free-mode';
 
 // import required modules
 import { Scrollbar , FreeMode } from "swiper/modules";
+import SingleProduct from "../Product_list/SingleProduct";
 
 const NewProduct = () => {
   return (
@@ -55,27 +56,33 @@ const NewProduct = () => {
               >
                 <SwiperSlide>
                   {" "}
-                  <HomeProductList />
+                  {/* <HomeProductList /> */}
+                  <SingleProduct/>
                 </SwiperSlide>
                 <SwiperSlide>
                   {" "}
-                  <HomeProductList />
+                  {/* <HomeProductList /> */}
+                  <SingleProduct  />
                 </SwiperSlide>
                 <SwiperSlide>
                   {" "}
-                  <HomeProductList />
+                  {/* <HomeProductList /> */}
+                  <SingleProduct  />
                 </SwiperSlide>
                 <SwiperSlide>
                   {" "}
-                  <HomeProductList />
+                  {/* <HomeProductList /> */}
+                  <SingleProduct  />
                 </SwiperSlide>
                 <SwiperSlide>
                   {" "}
-                  <HomeProductList />
+                  {/* <HomeProductList /> */}
+                  <SingleProduct  />
                 </SwiperSlide>
                 <SwiperSlide>
                   {" "}
-                  <HomeProductList />
+                  {/* <HomeProductList /> */}
+                  <SingleProduct  />
                 </SwiperSlide>
               </Swiper>
             </div>

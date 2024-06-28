@@ -13,6 +13,8 @@ import "swiper/css/zoom";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import ProductDetailsView from "../common/ProductDetailsView";
 import { Link } from "react-router-dom";
+import Review from "../common/Review";
+import { Fade } from "react-reveal";
 
 const ProductDetails = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -64,7 +66,7 @@ const ProductDetails = () => {
                         </SwiperSlide>
                         <SwiperSlide>
                           <Zoom>
-                            <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                            <img src="https://swiperjs.com/demos/images/nature-2.jpg"  heigh/>
                           </Zoom>
                         </SwiperSlide>
                         <SwiperSlide>
@@ -91,25 +93,26 @@ const ProductDetails = () => {
                         <SwiperSlide>
                           <img
                             src="https://swiperjs.com/demos/images/nature-1.jpg"
-                            style={{ width: "104px", height: "104px" }}
+                            // style={{ width: "104px", height: "104px" }}
                           />
                         </SwiperSlide>
                         <SwiperSlide>
                           <img
                             src="https://swiperjs.com/demos/images/nature-2.jpg"
-                            style={{ width: "104px", height: "104px" }}
+                            // style={{ width: "104px", height: "104px" }}
                           />
                         </SwiperSlide>
                         <SwiperSlide>
                           <img
                             src="https://swiperjs.com/demos/images/nature-3.jpg"
-                            style={{ width: "104px", height: "104px" }}
+                            // style={{ width: "104px", height: "104px" }}
                           />
                         </SwiperSlide>
                         <SwiperSlide>
                           <img
                             src="https://swiperjs.com/demos/images/nature-4.jpg"
-                            style={{ width: "104px", height: "104px" }}
+                            // style={{ width: "104px", height: "104px" }}
+                         
                           />
                         </SwiperSlide>
                       </Swiper>
@@ -130,10 +133,7 @@ const ProductDetails = () => {
                   <span className="breadcrumb-separator menu-link fw-medium ps-1 pe-1">
                     /
                   </span>
-                  <a
-                    
-                    className="menu-link menu-link_us-s text-uppercase fw-medium"
-                  >
+                  <a className="menu-link menu-link_us-s text-uppercase fw-medium">
                     The Shop
                   </a>
                 </div>
@@ -291,7 +291,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
 
-                        {/* Out of Stock */}
+                {/* Out of Stock */}
                 {/* <div className="product-single__addtocart">
                   <button
                     type="submit"
@@ -312,7 +312,7 @@ const ProductDetails = () => {
                     <div className="qty-control__reduce">-</div>
                     <div className="qty-control__increase">+</div>
                   </div>
-                  
+
                   <button
                     type="submit"
                     className="btn btn-primary btn-addtocart js-open-aside gclass-button"
@@ -356,7 +356,65 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          <ProductDetailsView />
+          {/* <ProductDetailsView /> */}
+
+          <div className="product-single__details-list ">
+          {/* Description------------------------------------------ */}
+          <Fade>
+            <h2 className="product-single__details-list__title">Description</h2>
+            {/* product-single__details-list__content */}
+            <div className="mx-3">
+            {/* product-single__description */}
+              <div className="product-single__description ">
+                <h3 className="block-title mb-4">
+                  Sed do eiusmod tempor incididunt ut labore
+                </h3>
+                <p className="content">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum. Sed ut perspiciatis unde omnis
+                  iste natus error sit voluptatem accusantium doloremque
+                  laudantium, totam rem aperiam, eaque ipsa quae ab illo
+                  inventore veritatis et quasi architecto beatae vitae dicta
+                  sunt explicabo.
+                </p>
+                <div className="row">
+                  <div className="col-lg-6">
+                    <h3 className="block-title">Why choose product?</h3>
+                    <ul className="list text-list">
+                      <li>Creat by cotton fibric with soft and smooth</li>
+                      <li>
+                        Simple, Configurable (e.g. size, color, etc.), bundled
+                      </li>
+                      <li>Downloadable/Digital Products, Virtual Products</li>
+                    </ul>
+                  </div>
+                  <div className="col-lg-6">
+                    <h3 className="block-title">Sample Number List</h3>
+                    <ol className="list text-list">
+                      <li>Create Store-specific attrittbutes on the fly</li>
+                      <li>
+                        Simple, Configurable (e.g. size, color, etc.), bundled
+                      </li>
+                      <li>Downloadable/Digital Products, Virtual Products</li>
+                    </ol>
+                  </div>
+                </div>
+                <h3 className="block-title mb-0">Lining</h3>
+                <p className="content">100% Polyester, Main: 100% Polyester.</p>
+              </div>
+            </div>
+            </Fade>
+          {/* Review */}
+          <Fade>
+              <Review />
+            </Fade>
+          </div>
         </section>
         {/* /.products-carousel container */}
       </main>

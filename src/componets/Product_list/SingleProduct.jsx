@@ -9,11 +9,12 @@ import "swiper/css/scrollbar";
 
 // import required modules
 import { Scrollbar } from "swiper/modules";
+import { IconHeart } from "@tabler/icons-react";
 
-const SingleProduct = () => {
+const SingleProduct = ({className}) => {
   return (
     <>
-      <div className="product-card-wrapper">
+      <div className={`product-card-wrapper ${className}`}>
         <div className="product-card mb-3 mb-md-4 mb-xxl-5">
           <div className="pc__img-wrapper">
             <div style={{ width: 330 }} role="group">
@@ -71,7 +72,8 @@ const SingleProduct = () => {
               className="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist gclass-text"
               title="Add To Wishlist"
             >
-              <IconPack icon={"fillheart"} size={"small"} />
+              {/* <IconPack icon={"fillheart"} size={"small"} /> */}
+              <IconHeart/>
             </button>
           </div>
           <div className="pc-labels position-absolute top-0 start-0 w-100 d-flex justify-content-between">

@@ -1,5 +1,6 @@
 import React from "react";
 import HomeProductList from "./HomeProductList";
+import SingleProduct from "../Product_list/SingleProduct";
 
 const TrendingProduct = () => {
   return (
@@ -18,14 +19,20 @@ const TrendingProduct = () => {
             aria-labelledby="collections-tab-1-trigger"
           >
             <div className="row">
+              {/* <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
               <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
               <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
               <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
               <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
               <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
               <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
-              <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
-              <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
+              <HomeProductList className={"col-6 col-md-4 col-lg-3"} /> */}
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
             </div>
             {/* /.row */}
             <div className="text-center mt-2">

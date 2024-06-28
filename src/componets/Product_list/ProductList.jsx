@@ -87,6 +87,8 @@ const ProductList = () => {
               id="products-grid"
             >
               <SingleProduct />
+              <SingleProduct />
+              <SingleProduct />
             </div>
             {/* /.products-grid row */}
            <Pagination currentPage={currentPage} TotalPage={10} onPageChange={handlePageChange}/>

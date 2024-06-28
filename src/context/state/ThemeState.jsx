@@ -4,7 +4,7 @@ import { GlobalContext, ThemeContext } from "../CreateContext";
 const ThemeState = ({ children }) => {
   const { setShowGlobalLoading } = useContext(GlobalContext)
   const [themePallete , setThemePallete] = useState()
-  const url = `${import.meta.env.VITE_APP_SERVER_URL}/theme`
+  const url = `${import.meta.env.VITE_APP_SERVER_URL}/api/theme`
 
   const getTheme = async()=>{
     try {
