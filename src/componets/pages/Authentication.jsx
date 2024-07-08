@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Fade } from "react-reveal";
-import { Link } from "react-router-dom";
 import Login from "./Login";
 import Registration from "./Registration";
 

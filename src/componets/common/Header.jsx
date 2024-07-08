@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Fade } from "react-reveal";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Fade } from "react-awesome-reveal";
 import CustomeModal from "./CustomeModal";
 import { Link, useNavigate } from "react-router-dom";
 import IconPack from "./IconPack";
@@ -7,17 +7,46 @@ import Logo from "./Logo";
 import DropdownList from "./DropdownList";
 import SideBar from "./SideBar";
 import SideBarCart from "./SideBarCart";
-import { GlobalContext } from "../../context/CreateContext";
+import { AuthContext, GlobalContext, ProductContext } from "../../context/CreateContext";
+import Cookies from "js-cookie";
 
 const Header = () => {
+  const {GetToken} = useContext(AuthContext)
+  // const navigate = useNavigate()
+  const token = GetToken()
+  const {filter , setFilter} = useContext(ProductContext)
   const {showModal , setShowModal , showSidebar, setShowSidebar} = useContext(GlobalContext)
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
   const [showMobiNav, setShowMobiNav] = useState(false);
 
+  // const searchRef = useRef(null);
+
+  // const handleClickOutside = (event) => {
+  //   console.log(event)
+  //   console.log("searchRef.current===>" , searchRef.current)
+  //   console.log("event.target===>" , event.target)
+  //   if (searchRef.current && !searchRef.current.contains(event.target)) {
+  //     console.log("Run")
+  //     setShowSearch(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.addEventListener('click', handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, []);
+
   useEffect(()=>{
     document.body.style.overflow = showSidebar || showMobiNav ? "hidden" : "";
   },[showSidebar , showMobiNav])
+
+ 
+  const handleSearchChange = (e)=>{
+    setFilter({...filter , [e.target.name] : e.target.value})
+  }
 
   const navigateFunc = (endpoint) => {
     navigate(endpoint);
@@ -423,11 +452,10 @@ const Header = () => {
                 </div>
                 {showSearch ? (
                   <Fade duration={500}>
-                    <div className="search-popup js-hidden-content">
-                      <form
-                        action="./search_result.html"
-                        method="GET"
+                    <div className="search-popup js-hidden-content" >
+                      <div
                         className="search-field container"
+                       
                       >
                         <p className="text-uppercase text-secondary fw-medium mb-4 gclass-navbar">
                           What are you looking for?
@@ -436,12 +464,21 @@ const Header = () => {
                           <input
                             className="search-field__input search-popup__input w-100 fw-medium gclass-navbar"
                             type="text"
-                            name="search-keyword"
+                            name="query"
                             placeholder="Search products"
+                            onChange={handleSearchChange}
                           />
                           <button
                             className="btn-icon search-popup__submit gclass-navbar"
-                            type="submit"
+                            type="button"
+                            onClick={(e)=>{
+                              e.preventDefault()
+                              if(filter.query.trim().length){
+                                setShowSearch(false)
+                                navigate("/shop")
+                              }
+                            }}
+                            
                           >
                             {/* <svg
                             className="d-block"
@@ -462,7 +499,7 @@ const Header = () => {
                             type="reset"
                           />
                         </div>
-                        <div className="search-popup__results">
+                        {/* <div className="search-popup__results">
                           <div className="sub-menu search-suggestion">
                             <h6 className="sub-menu__title fs-base gclass-navbar">
                               Quicklinks
@@ -502,8 +539,8 @@ const Header = () => {
                             </ul>
                           </div>
                           <div className="search-result row row-cols-5" />
-                        </div>
-                      </form>
+                        </div> */}
+                      </div>
                       {/* /.header-search */}
                     </div>
                   </Fade>
@@ -514,23 +551,35 @@ const Header = () => {
               </div>
               {/* /.header-tools__item hover-container */}
               <div className="header-tools__item hover-container">
+                {
+                  token ? (
+                    <>
                 <Link
                   className="header-tools__item js-open-aside"
                   to={"/profile/dashboard"}
                 >
                   <IconPack icon={"user"} />
                 </Link>
-              </div>
-              <Link to={"/profile/wishlist"} className="header-tools__item">
-                {/* <svg
-                  width={20}
-                  height={20}
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                    </>
+                  ) : (
+                    <>
+                <Link
+                  className="header-tools__item js-open-aside"
+                  to={"/login"}
                 >
-                  <use href="#icon_heart" />
-                </svg> */}
+                  <IconPack icon={"user"} />
+                </Link>
+                    </>
+                  )
+                }
+              </div>
+
+              {
+                token && (
+                  <>
+                  
+              <Link to={"/profile/wishlist"} className="header-tools__item">
+             
                 <IconPack icon={"heart"} />
               </Link>
               <div
@@ -545,6 +594,9 @@ const Header = () => {
                   3
                 </span>
               </div>
+                  </>
+                )
+              }
               {/* <a
                 className="header-tools__item"
                 data-bs-toggle="modal"

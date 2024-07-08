@@ -1,24 +1,41 @@
-import React, { useContext, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import IconPack from "../common/IconPack";
 import Filter from "./Filter";
 import SingleProduct from "./SingleProduct";
 import SideBar from "../common/SideBar";
 import Pagination from "../common/Pagination";
+import { useParams } from "react-router-dom";
+import { GlobalContext, ProductContext } from "../../context/CreateContext";
+import { useDebounce } from "../../hooks/useDebounce";
+import Loading from "../common/Loading";
 // import { GlobalContext } from "../../context/CreateContext";
 
 const ProductList = () => {
-  // const { showSidebar, setShowSidebar } = useContext(GlobalContext);
+  const { getFilter, filterCategory , filterData , toggleInFilter, currentPage , handlePageChange , products,totalPages , getProducts , filter} = useContext(ProductContext);
   const [showSidebar, setShowSidebar] = useState(false);
-  const [currentPage, setCurrentPage] = useState(2);
-  if(showSidebar){
-    // document.body.style.overflow = 'hidden';
-  }
+  const {loading } = useContext(GlobalContext)
+  // const [currentPage, setCurrentPage] = useState(2);
+  const debouncedSearchTerm = useDebounce(filterCategory, 1500);
+  const debouncedFilterTerm = useDebounce(filter, 1000);
+
+  useEffect(() => {
+    if (filterCategory.length) {
+      getFilter({ pc_ids: filterCategory });
+    } else {
+      getFilter();
+    }
+  }, [debouncedSearchTerm]);
+
+  useEffect(()=>{
+    getProducts()
+  } , [ currentPage , debouncedFilterTerm ])
+
   const handleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
+  // const handlePageChange = (newPage) => {
+  //   setCurrentPage(newPage);
+  // };
   return (
     <>
       <main className="padding-top">
@@ -50,18 +67,21 @@ const ProductList = () => {
                 <select
                   className="shop-acs__select gclass-bg-body w-auto border-0 py-0 order-1 order-md-0"
                   aria-label="Sort Items"
-                  name="total-number"
-                  defaultValue={0}
+               
+                    onChange={(e)=>{
+                      toggleInFilter("sorting" , e.target.value)
+                    }}
                 >
-                  <option value={0}>Default Sorting</option>
-                  <option value={1}>Featured</option>
-                  <option value={2}>Best selling</option>
-                  <option value={3}>Alphabetically, A-Z</option>
-                  <option value={3}>Alphabetically, Z-A</option>
-                  <option value={3}>Price, low to high</option>
-                  <option value={3}>Price, high to low</option>
-                  <option value={3}>Date, old to new</option>
-                  <option value={3}>Date, new to old</option>
+                  {
+                    filterData && filterData['sorting'].map((item , i )=>{
+                      return (
+                        
+                        <option key={i} value={item.key}>{item.name}</option>
+                    
+                      )
+                    })
+                  }
+                 
                 </select>
                 {/* <div className="shop-asc__seprator mx-3 bg-light d-none d-md-block order-md-0" /> */}
                 {/* /.col-size */}
@@ -86,19 +106,40 @@ const ProductList = () => {
               className="products-grid row row-cols-2 row-cols-md-3"
               id="products-grid"
             >
-              <SingleProduct />
-              <SingleProduct />
-              <SingleProduct />
+              
+              {/* <Suspense fallback={<h1>Loading...</h1>}> */}
+
+              {
+               loading["GET_PRODUCT"] ? <Loading type={"progress"}/> : (products && products.length ? (
+                  products.map((item , i )=>{
+                    return(
+                      
+                      <SingleProduct data={item} key={i}/>
+                    )
+                  })
+                ) : (<h5 className="fw-semi-bold m-0 p-0 text-center w-100 mt-5">No product</h5>))
+              }
+              {/* </Suspense> */}
             </div>
+            
             {/* /.products-grid row */}
-           <Pagination currentPage={currentPage} TotalPage={10} onPageChange={handlePageChange}/>
+            {
+             !loading["GET_PRODUCT"] && totalPages > 1 ? (
+
+                <Pagination
+                  currentPage={currentPage}
+                  TotalPage={totalPages}
+                  onPageChange={handlePageChange}
+                />
+              ) : ""
+            }
           </div>
         </section>
         <div className="mb-5 pb-xl-5"></div>
         {/* /.shop-main container */}
       </main>
 
-      <SideBar isOpen={showSidebar}  className={"aside-filters"}>
+      <SideBar isOpen={showSidebar} className={"aside-filters"}>
         <div className="aside-header d-flex d-lg-none align-items-center">
           <h3 className="text-uppercase fs-6 mb-0">Filter By</h3>
           <button

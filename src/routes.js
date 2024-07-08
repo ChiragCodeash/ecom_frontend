@@ -14,8 +14,10 @@ import About from "./componets/pages/About";
 import Authentication from "./componets/pages/Authentication";
 import Contact from "./componets/pages/Contact";
 import Faq from "./componets/pages/Faq";
+import Login from "./componets/pages/Login";
 import Page404 from "./componets/pages/Page404";
 import ProductDetails from "./componets/pages/ProductDetails";
+import Registration from "./componets/pages/Registration";
 import ResPass from "./componets/pages/ResPass";
 import TermAndCondition from "./componets/pages/TermAndCondition";
 
@@ -43,6 +45,18 @@ const routes = [
     component: Authentication,
     exact: true,
     title : "Authentication"
+  },
+  {
+    path: '/login',
+    component: Login,
+    exact: true,
+    title : "Login"
+  },
+  {
+    path: '/registration',
+    component:Registration,
+    exact: true,
+    title : "Registration"
   },
   {
     path: '/reset',
@@ -88,6 +102,36 @@ const routes = [
       },
     ]
   },
+  // {
+  //   path : "/profile/dashboard",
+  //   component : Dashboard,
+  //   exact : true , 
+  //   title : "Dashboard" , 
+  // },
+  // {
+  //   path : "/profile/orders",
+  //   component : Orders,
+  //   exact : true , 
+  //   title : "Orders" , 
+  // },
+  // {
+  //   path : "/profile/wishlist",
+  //   component : Wishlist,
+  //   exact : true , 
+  //   title : "Wishlist" , 
+  // },
+  // {
+  //   path : "/profile/account",
+  //   component : AccountDetails,
+  //   exact : true , 
+  //   title : "Account" , 
+  // },
+  // {
+  //   path : "/profile/address",
+  //   component : Address,
+  //   exact : true , 
+  //   title : "Address" , 
+  // },
   {
     path: '/product',
     component: ProductDetails,

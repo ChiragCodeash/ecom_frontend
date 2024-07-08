@@ -26,7 +26,7 @@ const Pagination = ({ currentPage, TotalPage, onPageChange }) => {
           onClick={() => {
             onPageChange(currentPage !== 1 ? currentPage - 1 : currentPage);
           }}
-          className="btn-link d-inline-flex align-items-center"
+          className="btn-link d-inline-flex align-items-center cursor_pointer"
         >
           <svg
             className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
@@ -42,9 +42,9 @@ const Pagination = ({ currentPage, TotalPage, onPageChange }) => {
         <ul className="pagination mb-0 ">
           {showPageArray.map((number, i) => {
             return (
-              <li className="page-item" key={i}>
+              <li className="page-item " key={i}>
                 <a
-                  className={`btn-link px-1 mx-2 gclass-text-dark ${
+                  className={`btn-link cursor_pointer px-1 mx-2 gclass-text-dark ${
                     number == currentPage && "btn-link_active"
                   }`}
                   onClick={() => {
@@ -63,7 +63,7 @@ const Pagination = ({ currentPage, TotalPage, onPageChange }) => {
               currentPage === PageArray.length ? currentPage : currentPage + 1
             );
           }}
-          className="btn-link d-inline-flex align-items-center"
+          className="btn-link d-inline-flex align-items-center cursor_pointer"
         >
           <span className="fw-medium me-1 gclass-text-dark">NEXT</span>
           <svg

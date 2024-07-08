@@ -1,5 +1,5 @@
 import React from "react";
-import { Fade } from "react-reveal";
+import { Fade } from "react-awesome-reveal";
 
 const SideBar = ({ title, children , isOpen ,className }) => {
 //   const [isOpen, setisOpen] = useState(false);
@@ -12,9 +12,9 @@ const SideBar = ({ title, children , isOpen ,className }) => {
       
       <>
         {isOpen && (
-          <Fade>
+          // <Fade>
             <div className="page-overlay page-overlay_visible"></div>
-          </Fade>
+          // </Fade>
         )}
       
           <div

@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../../context/CreateContext";
+import toast from "react-hot-toast";
 
 const Profile = ({ title }) => {
+  const {Logout} = useContext(AuthContext)
   document.title = title;
   const location = useLocation()
   const componet = location.pathname.split("/")[2]
-  const navigate = useNavigate()
-  useEffect(()=>{
-    navigate("/profile/dashboard")
-  },[])
   return (
     <>
       <main className="padding-top">
@@ -59,12 +58,12 @@ const Profile = ({ title }) => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/auth"
-                    className="menu-link menu-link_us-s"
+                  <div
+                    onClick={Logout}
+                    className="menu-link menu-link_us-s cursor_pointer"
                   >
                     Logout
-                  </Link>
+                  </div>
                 </li>
               </ul>
             </div>

@@ -6,10 +6,10 @@ import MainContextProvider from "./context/MainContextProvider";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
-  <MainContextProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <MainContextProvider>
       <App />
-    </BrowserRouter>
-  </MainContextProvider>
+    </MainContextProvider>
+  </BrowserRouter>
   // </React.StrictMode>,
 );

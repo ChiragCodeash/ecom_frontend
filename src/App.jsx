@@ -9,7 +9,7 @@ import { GlobalContext, ThemeContext } from "./context/CreateContext";
 import Loading from "./componets/common/Loading";
 import SimpleMap from "./componets/common/SimpleMap";
 import GlobalStyle from "./GlobalStyle";
-import GlobalState from "./context/state/GlobalState";
+import { Toaster } from "react-hot-toast";
 const App = () => {
   const { getTheme, themePallete } = useContext(ThemeContext);
   const { showGlobalLoading } = useContext(GlobalContext);
@@ -29,9 +29,24 @@ const App = () => {
   return (
     <>
       <GotoTop />
+      <Toaster
+        
+        position="bottom-right"
+        toastOptions={{
+          duration: 2500,
+          className : "fw-bold fs-6",
+          style: {
+            border: "1px solid #713200",
+            padding: "16px",
+            color: "#713200",
+          },
+        }}
+      />
       <Loading status={showGlobalLoading} />
       {themePallete && (
         <ThemeProvider theme={themePallete}>
+
+        {/* This is For Active Theame */}
           {/* <GlobalStyle /> */}
           <Routes>
             {routes.map((route, index) => {

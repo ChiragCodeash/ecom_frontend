@@ -14,7 +14,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import ProductDetailsView from "../common/ProductDetailsView";
 import { Link } from "react-router-dom";
 import Review from "../common/Review";
-import { Fade } from "react-reveal";
+import { Fade } from "react-awesome-reveal";
 
 const ProductDetails = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
