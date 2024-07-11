@@ -133,6 +133,12 @@ const routes = [
   //   title : "Address" , 
   // },
   {
+    path: '/product/:variant_id',
+    component: ProductDetails,
+    exact: true,
+    title : "Product Details"
+  },
+  {
     path: '/product',
     component: ProductDetails,
     exact: true,

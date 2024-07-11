@@ -4,6 +4,7 @@ import GlobalState from "./state/GlobalState";
 import AuthState from "./state/AuthState";
 import ProfileState from "./state/ProfileState";
 import ProductState from "./state/ProductState";
+import CartState from "./state/CartState";
 
 const MainContextProvider = ({ children }) => {
   return (
@@ -12,10 +13,9 @@ const MainContextProvider = ({ children }) => {
         <ThemeState>
           <ProfileState>
             <ProductState>
-
-            {children}
+              <CartState>{children}</CartState>
             </ProductState>
-            </ProfileState>
+          </ProfileState>
         </ThemeState>
       </GlobalState>
     </AuthState>

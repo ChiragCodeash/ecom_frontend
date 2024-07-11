@@ -1264,6 +1264,7 @@ const GlobalState = ({ children }) => {
   });
   const [loading , setLoading] = useState({
     GET_PRODUCT : true,
+    GET_SINGLE_PRODUCT : true,
   })
 
   const GetState = () =>{

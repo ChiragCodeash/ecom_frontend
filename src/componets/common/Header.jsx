@@ -7,11 +7,12 @@ import Logo from "./Logo";
 import DropdownList from "./DropdownList";
 import SideBar from "./SideBar";
 import SideBarCart from "./SideBarCart";
-import { AuthContext, GlobalContext, ProductContext } from "../../context/CreateContext";
+import { AuthContext, CartContext, GlobalContext, ProductContext } from "../../context/CreateContext";
 import Cookies from "js-cookie";
 
 const Header = () => {
   const {GetToken} = useContext(AuthContext)
+  const { cartData } = useContext(CartContext)
   // const navigate = useNavigate()
   const token = GetToken()
   const {filter , setFilter} = useContext(ProductContext)
@@ -191,7 +192,7 @@ const Header = () => {
           >
             <IconPack icon={"cart"} />
             <span className="cart-amount d-block position-absolute js-cart-items-count gclass-bg-secondary">
-              3
+            {cartData && cartData.data.length}
             </span>
           </a>
         </div>
@@ -255,7 +256,7 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="border-top mt-auto pb-2">
+            {/* <div className="border-top mt-auto pb-2">
               <div className="customer-links container mt-4 mb-2 pb-1">
                 <Link to={"/profile/dashboard"}>
                   <IconPack icon={"user"} />
@@ -339,7 +340,7 @@ const Header = () => {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </nav>
         ) : (
           ""
@@ -591,7 +592,7 @@ const Header = () => {
               >
                 <IconPack icon={"cart"} />
                 <span className="cart-amount d-block position-absolute js-cart-items-count gclass-bg-secondary">
-                  3
+                 {cartData && cartData.data.length}
                 </span>
               </div>
                   </>

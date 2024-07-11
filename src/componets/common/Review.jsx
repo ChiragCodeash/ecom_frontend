@@ -11,7 +11,7 @@ const Review = () => {
         role="tabpanel"
         aria-labelledby="tab-reviews-tab"
       >
-        <h2 class="product-single__details-list__title">Reviews (3)</h2>
+        <h2 className="product-single__details-list__title">Reviews (3)</h2>
         {/* product-single__details-list__content */}
         <div className="mx-3">
         <div className="product-single__reviews-list">

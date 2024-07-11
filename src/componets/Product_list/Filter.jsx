@@ -13,6 +13,7 @@ const Filter = ({ type }) => {
     filterData,
     toggleInFilter,
     filter,
+    setFilter,
     priceRange,
     setPriceRange,
     filterCategory,
@@ -20,6 +21,7 @@ const Filter = ({ type }) => {
 
   const handleChange = (event, newValue) => {
     setPriceRange(newValue);
+    // setFilter({...filter , priceRange : ne})
   };
   if (type == "sidebar") {
     return (
@@ -273,8 +275,8 @@ const Filter = ({ type }) => {
                 getAriaLabel={() => "Price range"}
                 value={priceRange}
                 min={0}
-                step={10}
                 max={filterData && filterData.priceRange.max}
+                step={10}
                 onChange={handleChange}
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}

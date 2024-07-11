@@ -27,19 +27,16 @@ const TrendingProduct = () => {
               <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
               <HomeProductList className={"col-6 col-md-4 col-lg-3"} />
               <HomeProductList className={"col-6 col-md-4 col-lg-3"} /> */}
-              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
-              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
-              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
-              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
-              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
-              <SingleProduct className={"col-6 col-md-4 col-lg-3"}/>
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"} />
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"} />
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"} />
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"} />
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"} />
+              <SingleProduct className={"col-6 col-md-4 col-lg-3"} />
             </div>
             {/* /.row */}
             <div className="text-center mt-2">
-              <a
-                className="btn-link btn-link_lg default-underline text-uppercase fw-medium gclass-text"
-               
-              >
+              <a className="btn-link btn-link_lg default-underline text-uppercase fw-medium gclass-text">
                 See All Products
               </a>
             </div>

@@ -195,66 +195,6 @@ const Footer = () => {
           </div>
           {/* /.row-cols-5 */}
         </div>
-        {/* /.footer-middle container */}
-        <div className="footer-bottom container">
-          <div className="d-block d-md-flex align-items-center">
-            <span className="footer-copyright me-auto">©2023 Uomo</span>
-            <div className="footer-settings d-block d-md-flex align-items-center">
-              <div className="d-flex align-items-center">
-                <label
-                  htmlFor="footerSettingsLanguage"
-                  className="me-2 text-secondary"
-                >
-                  Language
-                </label>
-                <select
-                  id="footerSettingsLanguage"
-                  className="form-select form-select-sm "
-                  aria-label="Default select example"
-                  name="store-language"
-                  defaultValue={"UK"}
-                >
-                  <option className="footer-select__option" value={"UK"}>
-                    United Kingdom | English
-                  </option>
-                  <option className="footer-select__option" value={"US"}>
-                    United States | English
-                  </option>
-                  <option className="footer-select__option" value={"germen"}>
-                    German
-                  </option>
-                  <option className="footer-select__option" value={"french"}>
-                    French
-                  </option>
-                  <option className="footer-select__option" value={"swedish"}>
-                    Swedish
-                  </option>
-                </select>
-              </div>
-              <div className="d-flex align-items-center">
-                <label
-                  htmlFor="footerSettingsCurrency"
-                  className="ms-md-3 me-2 text-secondary"
-                >
-                  Currency
-                </label>
-                <select
-                  id="footerSettingsCurrency"
-                  className="form-select form-select-sm"
-                  aria-label="Default select example"
-                  name="store-language"
-                  defaultValue={"USD"}
-                >
-                  <option value={"USD"}>$ USD</option>
-                  <option value={"GBP"}>£ GBP</option>
-                  <option value={"EURO"}>€ EURO</option>
-                </select>
-              </div>
-            </div>
-            {/* /.footer-settings */}
-          </div>
-          {/* /.d-flex */}
-        </div>
         {/* /.footer-bottom container */}
       </footer>
     </>

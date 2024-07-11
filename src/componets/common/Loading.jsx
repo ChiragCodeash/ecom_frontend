@@ -19,7 +19,7 @@ const Loading = ({ type }) => {
         <>
         <div className="align-items-center d-flex justify-content-center p-0 px w-100" style={{height : "65vh"}}>
 
-          <div class="progress"></div>
+          <div className="progress"></div>
         </div>
         </>
       );

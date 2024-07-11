@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import CheckoutStep from "./CheckoutStep";
 import IconPack from "../common/IconPack";
+import { CartContext } from "../../context/CreateContext";
 
 const Cart = () => {
+  const RUPEE_SYMBOL = import.meta.env.VITE_APP_RUPEE_SYMBOL
+  const { cartData } = useContext(CartContext);
   return (
     <>
       <main className="padding-top">
@@ -25,53 +28,69 @@ const Cart = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <div className="shopping-cart__product-item">
-                        <img
-                          loading="lazy"
-                          src="/assets/images/cart-item-1.jpg"
-                          width={120}
-                          height={120}
-                          alt=""
-                        />
-                      </div>
-                    </td>
-                    <td>
-                      <div className="shopping-cart__product-item__detail">
-                        <h4>Zessi Dresses</h4>
-                        <ul className="shopping-cart__product-item__options">
-                          <li>Color: Yellow</li>
-                          <li>Size: L</li>
-                        </ul>
-                      </div>
-                    </td>
-                    <td>
-                      <span className="shopping-cart__product-price">$99</span>
-                    </td>
-                    <td>
-                      <div className="qty-control position-relative  qty-initialized">
-                        <input
-                          type="number"
-                          name="quantity"
-                          defaultValue={3}
-                          min={1}
-                          className="qty-control__number text-center gclass-bg-body form-control gclass-border-text"
-                        />
-                        <div className="qty-control__reduce">-</div>
-                        <div className="qty-control__increase">+</div>
-                      </div>
-                      {/* .qty-control */}
-                    </td>
-                    <td>
-                      <span className="shopping-cart__subtotal">$297</span>
-                    </td>
-                    <td>
-                      <a href="#" className="gclass-text-dark">
-                        <IconPack icon={"close"} />
-                      </a>
-                    </td>
-                  </tr>
+                  {cartData &&
+                    cartData.data.map((item, i) => {
+                      return (
+                        <tr>
+                          <td>
+                            <div className="shopping-cart__product-item">
+                              <img
+                                loading="lazy"
+                                src={item?.image_array[0]}
+                                width={120}
+                                height={120}
+                                alt=""
+                              />
+                            </div>
+                          </td>
+                          <td>
+                            <div className="shopping-cart__product-item__detail">
+                              <h4>
+                                {" "}
+                                {item?.product_title.length >= 35
+                                  ? item?.product_title
+                                      .slice(0, 35)
+                                      .concat("...")
+                                  : item?.product_title}
+                              </h4>
+                              <ul className="shopping-cart__product-item__options">
+                                <li>Color: {item?.color_name}</li>
+                                <li>Size: {item?.size_name}</li>
+                              </ul>
+                            </div>
+                          </td>
+                          <td>
+                            <span className="shopping-cart__product-price">
+                            {RUPEE_SYMBOL} {item?.sale_price}
+                            </span>
+                          </td>
+                          <td>
+                            <div className="qty-control position-relative  qty-initialized">
+                              <input
+                                type="number"
+                                name="quantity"
+                                defaultValue={item?.qty}
+                                min={1}
+                                className="qty-control__number text-center gclass-bg-body form-control gclass-border-text"
+                              />
+                              <div className="qty-control__reduce">-</div>
+                              <div className="qty-control__increase">+</div>
+                            </div>
+                            {/* .qty-control */}
+                          </td>
+                          <td>
+                            <span className="shopping-cart__subtotal">
+                            {RUPEE_SYMBOL} {item?.subtotal}
+                            </span>
+                          </td>
+                          <td>
+                            <a href="#" className="gclass-text-dark">
+                              <IconPack icon={"close"} />
+                            </a>
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
               <div className="cart-table-footer">

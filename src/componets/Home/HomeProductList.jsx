@@ -1,79 +1,66 @@
-import React from "react";
-import IconPack from "../common/IconPack";
+import React, { useContext, useEffect, useState } from "react";
+import SingleProduct from "../Product_list/SingleProduct";
+import { ProductContext } from "../../context/CreateContext";
+import useOnScreen from "../../hooks/useOnScreen";
 import { Link } from "react-router-dom";
-import CustomeModal from "../common/CustomeModal";
 
-const HomeProductList = ({ className }) => {
+const ProductList = ({ title, functionToRun }) => {
+  const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
+  const [hasFetched, setHasFetched] = useState(false);
+  const [data, setData] = useState();
+
+  const fatchData = async () => {
+    const result = await functionToRun();
+    if (result.status) {
+      setData(result.result.data);
+    } else {
+      toast.error(result.message);
+    }
+  };
+  useEffect(() => {
+    if (isVisible && !hasFetched) {
+      fatchData();
+      setHasFetched(true);
+    }
+  }, [isVisible, hasFetched]);
   return (
-    <>
-      <div className={className}>
-        <div className="product-card mb-3 mb-md-4 mb-xxl-5">
-          <div className="pc__img-wrapper">
-            <Link to={"/product"}>
-              <img
-                loading="lazy"
-                src="/assets/images/home/demo7/product-1-1.jpg"
-                width={330}
-                height={400}
-                alt="Cropped Faux leather Jacket"
-                className="pc__img"
-              />
-              <img
-                loading="lazy"
-                src="/assets/images/home/demo7/product-1-2.jpg"
-                width={330}
-                height={400}
-                alt="Cropped Faux leather Jacket"
-                className="pc__img pc__img-second"
-              />
-            </Link>
-            <div className="product-label text-uppercase bg-white top-0 left-0 mt-2 mx-2 gclass-text gclass-bg-light">
-              New
-            </div>
-            <div className="product-label bg-red text-white right-0 top-0 left-auto mt-2 mx-2">
-              -67%
-            </div>
-            <div className="product-label text-uppercase bg-black text-white top-0 left-0 mt-2 mx-2 gclass-text-light gclass-bg-dark">
-              Sale
-            </div>
+    <React.Fragment>
+      <div className="mb-1 pb-4 mb-xl-5 pb-xl-5" />
+      <section className="products-carousel container " ref={ref}>
+        <h2 className="section-title text-uppercase text-center mb-1 mb-md-3 pb-xl-2 mb-xl-4 gclass-text">
+          {title}
+        </h2>
 
-            <div className="anim_appear-bottom position-absolute w-100 text-center mb-3">
-              <button
-                className="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-add-cart js-open-aside gclass-button"
-                data-aside="cartDrawer"
-                title="Add To Cart"
-              >
-                <IconPack icon={"cart"} size={"small"} />
-              </button>
-              <button
-                className="btn btn-round btn-hover-red border-0 text-uppercase me-1 me-md-2 js-quick-view gclass-button"
-                data-bs-toggle="modal"
-                data-bs-target="#quickView"
-                title="Quick view"
-              >
-                <IconPack icon={"eye"} size={"small"} />
-              </button>
-              <button
-                className="btn btn-round btn-hover-red border-0 text-uppercase js-add-wishlist gclass-button "
-                title="Add To Wishlist"
-              >
-                <IconPack icon={"heart"} size={"small"} />
-              </button>
+        <div className="tab-content pt-2" id="collections-tab-content">
+          <div
+            className="tab-pane fade active show"
+            id="collections-tab-1"
+            role="tabpanel"
+            aria-labelledby="collections-tab-1-trigger"
+          >
+            <div className="row">
+              {data &&
+                data.map((item, i) => {
+                  return (
+                    <SingleProduct
+                      data={item}
+                      key={i}
+                      className={"col-6 col-md-4 col-lg-3"}
+                    />
+                  );
+                })}
             </div>
-          </div>
-          <div className="pc__info position-relative ">
-            <p className="pc__category gclass-text">Dresses</p>
-            <h6 className="pc__title ">
-              <Link to={"/product"} className="gclass-text">Cropped Faux Leather Jacket</Link>
-            </h6>
-            <div className="product-card__price d-flex">
-              <span className="money price gclass-text">$29</span>
+            {/* /.row */}
+            <div className="text-center mt-2">
+              <Link to={"/shop"} className="btn-link btn-link_lg default-underline text-uppercase fw-medium gclass-text">
+                See All Products
+              </Link>
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </section>
+    </React.Fragment>
   );
 };
 
-export default HomeProductList;
+export default ProductList;

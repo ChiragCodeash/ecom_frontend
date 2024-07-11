@@ -1,23 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import HomeSlider from "./HomeSlider";
 // import TopCategories from "./TopCategories";
-import TrendingProduct from "./TrendingProduct";
-import Testimonial from "./Testimonial";
-import Sale from "./Sale";
-import NewProduct from "./NewProduct";
 import ServicesPromotion from "../common/ServicesPromotion";
-import CustomeModal from "../common/CustomeModal";
+import ProductList from "./HomeProductList";
+import Sale from "./Sale";
+import Testimonial from "./Testimonial";
+import { ProductContext } from "../../context/CreateContext";
 
 const Home = ({ title }) => {
+  const {getNewProducts} = useContext(ProductContext)
   document.title = title;
   return (
     <>
-     
       <div className="padding-top">
         <HomeSlider />
-        <TrendingProduct />
+        
+        <ProductList
+        functionToRun={getNewProducts}
+          title={
+            <>
+              LATEST <strong>Products</strong>
+            </>
+          }
+        />
         <Sale />
-        <NewProduct />
+       
+        {/* <ProductList
+          title={
+            <>
+              Trending <strong>Products</strong>
+            </>
+          }
+        /> */}
         <Testimonial />
         <ServicesPromotion />
       </div>
